@@ -1,1 +1,27 @@
 做个题吧，打印出一个二叉树每一层结点的平均值
+	
+	class Solution {
+	    public List<Double> averageOfLevels(TreeNode root) {
+		List<Double> result=new ArrayList();
+		if(root==null) return result;
+		List<TreeNode> list=new ArrayList();
+		list.add(root);
+		while(!list.isEmpty()){
+		    List<Integer> curList=new ArrayList();
+		    List<TreeNode> nextList=new ArrayList();
+		    int count=0;
+		    double sum=0;
+		    for(TreeNode cur:list){
+			sum+=cur.val;
+			count++;
+			if(cur.left!=null) nextList.add(cur.left);
+			if(cur.right!=null) nextList.add(cur.right);
+		    }
+		    double average=sum/count;
+		    result.add(average);
+		    list=nextList;
+		}
+		return result;
+	    }
+
+	}

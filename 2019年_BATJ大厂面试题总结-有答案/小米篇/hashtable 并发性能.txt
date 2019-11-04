@@ -1,1 +1,18 @@
 hashtable 并发性能
+	百万数据时大概在200毫秒左右
+	千万数据时大概在17秒左右
+
+hashMap性能
+	百万数据时大概在200毫秒左右
+	千万数据时大概在11秒左右
+
+ConcurrentHashMap性能
+	百万数据时大概在200毫秒左右
+	千万数据时大概在14秒左右
+
+
+百万数据时性能并没有太大的差异
+千万数据时 ConcurrentHashMap的性能要高于HashTable
+
+ConcurrentHashMap里使用了Segment分段锁+HashEntry，而HashTable用的是Syncronized锁全部，所有线程竞争一把锁。
+Segment分段锁继承ReentrantLock，在并发数高的时候，ReentrantLock比Syncronized总体开销要小一些。

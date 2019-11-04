@@ -1,1 +1,56 @@
 redis有哪些数据类型，持久化机制
+	数据类型：
+		字符串（String）
+			Redis中的字符串是一个字节序列。 常用操作命令有get、set等
+
+		列表（list）
+			Redis列表知识字符串列表，按插入顺序排序。您可以向Redis列表的头部或尾部添加元素,也可以用作队列
+
+		散列/哈希（hash）
+			Redis散列/哈希是键值对的集合。Redis散列/哈希是字符串字段和字符串值之间的映射，但字段值只能是字符串，不支持其他类型。因此，他们用于表示对象。应用场景：存储用户的基本信息等.
+
+		无序集合类型（set）
+			redis的set是String类型的无序集合，set元素最大可以包含2的32次方-1个元素。利用set集合类型，我们可以快速取出n个key之间的并集、交集、差集等.应用场景：取出两个QQ号中的共同的好友数。
+
+		有序集合类型（sorted set）
+			和set一样，sorted set也是string类型元素的集合，是一个没有重复元素的字符串集合。因为元素是有序的，所以使用有序集合你可以以非常快的速度（O(log(N))）添加，删除和更新元素，它也很擅长排序。应用场景：获取所有用户投票数最高的前10名
+
+
+	持久化：
+		
+		Redis提供了两种不同的持久化方法，RDB持久化和AOF持久化
+
+			RDB持久化（原理是将Reids在内存中的数据库记录定时dump到磁盘上的RDB持久化）
+				
+				RDB持久化
+				RDB是Redis的默认持久化方式。 找到Redis的配置文件：redis.conf
+
+				# 当在规定的时间内，Redis发生了写操作的个数满足条件，会触发发生BGSAVE命令。
+				# save <seconds> <changes>
+				# 当用户设置了多个save的选项配置，只要其中任一条满足，Redis都会触发一次BGSAVE操作，比如：900秒之内至少一次写操作、300秒之内至少发生10次写操作、60秒之内发生至少10000次写操作都会触发发生快照操作
+				save 900 1
+				save 300 10
+				save 60 10000
+
+			AOF（append only file）持久化 （AOF（append only file）持久化（原理是将Reids的操作日志以追加的方式写入文件））
+				在Redis.conf配置中设置如下：
+					# redis默认关闭AOF机制，可以将no改成yes实现AOF持久化
+					appendonly no
+					# AOF文件
+					appendfilename "appendonly.aof"
+					# AOF持久化同步频率，always表示每个Redis写命令都要同步fsync写入到磁盘中，但是这种方式会严重降低redis的速度；everysec表示每秒执行一次同步fsync，显示的将多个写命令同步到磁盘中；no表示让操作系统来决定应该何时进行同步fsync，Linux系统往往可能30秒才会执行一次
+					# appendfsync always
+					appendfsync everysec
+					# appendfsync no
+					# 在日志进行BGREWRITEAOF时，如果设置为yes表示新写操作不进行同步fsync，只是暂存在缓冲区里，避免造成磁盘IO操作冲突，等重写完成后在写入。redis中默认为no  
+					no-appendfsync-on-rewrite no   
+					# 当前AOF文件大小是上次日志重写时的AOF文件大小两倍时，发生BGREWRITEAOF操作。  
+					auto-aof-rewrite-percentage 100  
+					#当前AOF文件执行BGREWRITEAOF命令的最小值，避免刚开始启动Reids时由于文件尺寸较小导致频繁的BGREWRITEAOF。  
+					auto-aof-rewrite-min-size 64mb  
+					# Redis再恢复时，忽略最后一条可能存在问题的指令(因为最后一条指令可能存在问题，比如写一半时突然断电了)
+					aof-load-truncated yes
+
+：
+		为什么要持久化
+			为了能够重用Redis数据，或者防止系统故障，我们需要将Redis中的数据写入到磁盘空间中，即持久化。

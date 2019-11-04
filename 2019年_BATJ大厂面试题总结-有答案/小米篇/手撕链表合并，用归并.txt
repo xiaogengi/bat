@@ -1,1 +1,66 @@
 手撕链表合并，用归并
+	public class LinkMergeSort {
+		static int number=0;
+		public static void main(String[] args) {
+			int[] a = {10, 7, 3, 1, 40, 50, 99, 4, 2, 999 };
+			printSequence("输入的数列：",a);
+			Merge(a);
+			printSequence("排序的数列：",a);
+		}
+
+		private static void printSequence(String pre,int[] a) {
+			System.out.print(pre+"\n");
+			for(int i=0;i<a.length;i++)
+			System.out.print(a[i]+"\t");
+			System.out.println();
+		}
+
+		private static void Merge(int[] a) {
+			// TODO Auto-generated method stub
+			System.out.println("开始排序");
+			Sort(a, 0, a.length - 1);
+		}
+
+		private static void Sort(int[] a, int left, int right) {
+			if(left>=right)
+			return;
+			int mid = (left + right) / 2;
+			//两次Sort实现二路归并用，n路归并就用n个Sort
+			Sort(a, left, mid);
+			Sort(a, mid + 1, right);
+			merge(a, left, mid, right);
+		}
+
+
+		private static void merge(int[] a, int left, int mid, int right) {
+
+			int[] tmp = new int[a.length];
+			int r1 = mid + 1;
+			int tIndex = left;
+			int cIndex=left;
+			// 逐个归并
+			while(left <=mid && r1 <= right) {
+			if (a[left] <= a[r1])
+			tmp[tIndex++] = a[left++];
+			else
+			tmp[tIndex++] = a[r1++];
+			}
+			// 左边归并
+			while (left <=mid) {
+			tmp[tIndex++] = a[left++];
+			}
+			// 右边归并
+			while ( r1 <= right ) {
+			tmp[tIndex++] = a[r1++];
+			}
+
+			System.out.println("第"+(++number)+"趟排序:\t");
+			while(cIndex<=right){
+			a[cIndex]=tmp[cIndex];
+			//输出排序过程
+			System.out.print(a[cIndex]+"\t");
+			cIndex++;
+			}
+			System.out.println();
+			}
+		}
