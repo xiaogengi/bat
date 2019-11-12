@@ -1,0 +1,1 @@
+INSERT INTO `ftl_content`(`id`, `title_id`, `data_url`, `data_title`, `data_type`, `t_class`, `weight`, `status`, `create_time`, `update_time`) VALUES (1, 1, '1', '1', '1', '1', 2, 0, '2019-11-12 18:04:56', '2019-11-12 18:05:23');

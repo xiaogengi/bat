@@ -1,0 +1,9 @@
+INSERT INTO `ftl_title`(`id`, `weight`, `title`, `status`, `create_time`, `update_time`) VALUES (1, 1, '1', 0, '2019-11-12 18:01:51', '2019-11-12 18:02:41');
+INSERT INTO `ftl_title`(`id`, `weight`, `title`, `status`, `create_time`, `update_time`) VALUES (2, 0, NULL, 0, '2019-11-12 18:01:51', '2019-11-12 18:02:41');
+INSERT INTO `ftl_title`(`id`, `weight`, `title`, `status`, `create_time`, `update_time`) VALUES (3, 0, NULL, 0, '2019-11-12 18:01:51', '2019-11-12 18:02:41');
+INSERT INTO `ftl_title`(`id`, `weight`, `title`, `status`, `create_time`, `update_time`) VALUES (4, 0, NULL, 0, '2019-11-12 18:01:51', '2019-11-12 18:02:41');
+INSERT INTO `ftl_title`(`id`, `weight`, `title`, `status`, `create_time`, `update_time`) VALUES (5, 0, NULL, 0, '2019-11-12 18:01:51', '2019-11-12 18:02:41');
+INSERT INTO `ftl_title`(`id`, `weight`, `title`, `status`, `create_time`, `update_time`) VALUES (6, 0, NULL, 0, '0000-00-00 00:00:00', '2019-11-12 18:02:41');
+INSERT INTO `ftl_title`(`id`, `weight`, `title`, `status`, `create_time`, `update_time`) VALUES (7, 0, NULL, 0, '2019-11-12 18:02:22', '2019-11-12 18:02:41');
+INSERT INTO `ftl_title`(`id`, `weight`, `title`, `status`, `create_time`, `update_time`) VALUES (8, 0, '1', 0, '2019-11-12 18:02:51', '2019-11-12 18:05:17');
+INSERT INTO `ftl_title`(`id`, `weight`, `title`, `status`, `create_time`, `update_time`) VALUES (9, 0, '1', 0, '2019-11-12 18:03:03', '2019-11-12 18:05:14');
