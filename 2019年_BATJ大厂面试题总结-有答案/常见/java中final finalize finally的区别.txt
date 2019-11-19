@@ -1,0 +1,6 @@
+java中final finalize finally的区别
+	final和finally是Java的关键字，
+		final关键字在创建不可变的类的时候非常有用，只是声明这个类是final的。
+		finally关键字是唯一一个和这篇文章讨论到的异常处理相关的关键字。在你的产品代码中，在关闭连接和资源文件的是时候都必须要用到finally块
+	而finalize则是方法。
+		而finalize()方法则是垃圾回收器在回收一个对象前调用，但也Java规范里面没有保证这个方法一定会被调用
