@@ -1,1 +1,2 @@
 threadlocal的key底层是什么
+	是当前的ThreadLocal对象
