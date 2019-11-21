@@ -1,1 +1,2 @@
 ConcurrentHashMap底层
+	1.8之前采用分段锁，锁分离，1.8的时候改为了CAS算法
